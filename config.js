@@ -22,9 +22,9 @@ async function updateData() {
         total_level = level;
         }
         const liters = (Math.PI * Math.pow(radius, 2) * total_level / 1000).toFixed(2);
-        document.getElementById('val-level').innerText = level + " cm";
+        document.getElementById('val-level').innerText = total_level + " cm";
         document.getElementById('val-volume').innerText = liters + " liters";
-        console.log("Data updated:", { level, liters});
+        console.log("Data updated:", { total_level, liters});
 
     } catch (error) {
         console.error("Error at data obtaining:", error);

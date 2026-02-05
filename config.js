@@ -1,8 +1,4 @@
-//Firebase SDK
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-database.js";
-
-// URL tvojej databázy s .json na konci
+//PUT YOUR FIREBASE REALTIME DATABASE URL HERE (IN JSON FORMAT!!!)
 const firebaseURL = "https://watmonitor-lite-default-rtdb.europe-west1.firebasedatabase.app/.json";
 
 const LITER_PER_CM = 5.0265; // Uprav podľa potreby

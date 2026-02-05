@@ -10,3 +10,7 @@
 * Gemini / Analytics are not required
 * Navigate to: Build --> Realtime Database
 * Create Database, Select Test Mode
+* Copy URL, add .json at the end
+* For instance --> https://myapp-default-rtdb.europe-west1.firebasedatabase.app/.json
+* Put it into config.js file
+* Enjoy your first data in HTML5 webapp

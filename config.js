@@ -17,14 +17,13 @@ async function updateData() {
         const radius = diameter / 2;
         let total_level;
         if (depth > 0){ //DIFFERENTIAL MEASUREMENT (ULTRASONIC, RADAR)
+        total_level = depth - level;
+        }else{ //TOTAL MEASUREMENT (PRESSURE SENSOR, HYDROSTATIC PRESSURE)   
         total_level = level;
-        }else{ //TOTAL MEASUREMENT (PRESSURE SENSOR, HYDROSTATIC PRESSURE)
-        total_level = depth - level;    
         }
         const liters = (Math.PI * Math.pow(radius, 2) * total_level / 1000).toFixed(2);
         document.getElementById('val-level').innerText = level + " cm";
         document.getElementById('val-volume').innerText = liters + " liters";
-
         console.log("Data updated:", { level, liters});
 
     } catch (error) {

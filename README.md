@@ -14,3 +14,4 @@
 * For instance --> https://myapp-default-rtdb.europe-west1.firebasedatabase.app/.json
 * Put it into config.js file
 * Enjoy your first data in HTML5 webapp
+<img width="1313" height="448" alt="image" src="https://github.com/user-attachments/assets/4904be52-7ffc-4558-9d65-5d131246e2ad" />

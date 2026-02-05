@@ -1,8 +1,6 @@
 //PUT YOUR FIREBASE REALTIME DATABASE URL HERE (IN JSON FORMAT!!!)
 const firebaseURL = "https://watmonitor-lite-default-rtdb.europe-west1.firebasedatabase.app/.json";
 
-const LITER_PER_CM = 5.0265; // Uprav podľa potreby
-
 async function updateData() {
     try {
         const response = await fetch(firebaseURL);
@@ -13,29 +11,20 @@ async function updateData() {
 
         // Predpokladáme, že v DB máš kľúče "level" a "timestamp"
         const level = parseFloat(data.level) || 0;
-        const timestamp = data.timestamp;
 
-        // 1. Výpočet litrov
-        const liters = (level * LITER_PER_CM).toFixed(2);
-
-        // 2. Prevod času na lokálny formát OS
-        // Funguje pre ISO string, UNIX timestamp aj bežný dátum
-        const localTime = new Date(timestamp).toLocaleString([], {
-            day: '2. digit',
-            month: 'short',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
-
-        // 3. Zápis do HTML (podľa ID-čiek, ktoré sme si dohodli)
+        //CALCULATION
+        const diameter = 80; //set diameter of well in CM
+        const depth = 400; //set waterwell depth in CM
+        const radius = diameter / 2;
+        const liters = (Math.PI * Math.pow(radius, 2) * level / 1000).toFixed(2);
+        
         document.getElementById('val-level').innerText = level + " cm";
         document.getElementById('val-volume').innerText = liters + " liters";
-        document.getElementById('val-time').innerText = localTime;
 
-        console.log("Dáta zaktualizované:", { level, liters, localTime });
+        console.log("Data updated:", { level, liters});
 
     } catch (error) {
-        console.error("Chyba pri načítaní dát:", error);
+        console.error("Error at data obtaining:", error);
     }
 }
 

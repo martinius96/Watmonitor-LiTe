@@ -15,10 +15,11 @@ async function updateData() {
         const diameter = 80; //set diameter of well in CM
         const depth = 400; //set waterwell depth in CM if your sensor is measuring from the top to waterwell (differential measurement), set to 0, if you are sending total measurement (from bottom of the well to water level)
         const radius = diameter / 2;
+        let total_level;
         if (depth > 0){ //DIFFERENTIAL MEASUREMENT (ULTRASONIC, RADAR)
-        const total_level = level;
+        total_level = level;
         }else{ //TOTAL MEASUREMENT (PRESSURE SENSOR, HYDROSTATIC PRESSURE)
-        const total_level = depth - level;    
+        total_level = depth - level;    
         }
         const liters = (Math.PI * Math.pow(radius, 2) * total_level / 1000).toFixed(2);
         document.getElementById('val-level').innerText = level + " cm";

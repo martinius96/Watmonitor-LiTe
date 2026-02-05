@@ -4,20 +4,23 @@ const firebaseURL = "https://watmonitor-lite-default-rtdb.europe-west1.firebased
 async function updateData() {
     try {
         const response = await fetch(firebaseURL);
-        if (!response.ok) throw new Error("Chyba pripojenia");
+        if (!response.ok) throw new Error("Connection problem");
         
         const data = await response.json();
         if (!data) return;
 
-        // Predpokladáme, že v DB máš kľúče "level" a "timestamp"
         const level = parseFloat(data.level) || 0;
 
         //CALCULATION
         const diameter = 80; //set diameter of well in CM
-        const depth = 400; //set waterwell depth in CM
+        const depth = 400; //set waterwell depth in CM if your sensor is measuring from the top to waterwell (differential measurement), set to 0, if you are sending total measurement (from bottom of the well to water level)
         const radius = diameter / 2;
-        const liters = (Math.PI * Math.pow(radius, 2) * level / 1000).toFixed(2);
-        
+        if (depth > 0){ //DIFFERENTIAL MEASUREMENT (ULTRASONIC, RADAR)
+        const total_level = level;
+        }else{ //TOTAL MEASUREMENT (PRESSURE SENSOR, HYDROSTATIC PRESSURE)
+        const total_level = depth - level;    
+        }
+        const liters = (Math.PI * Math.pow(radius, 2) * total_level / 1000).toFixed(2);
         document.getElementById('val-level').innerText = level + " cm";
         document.getElementById('val-volume').innerText = liters + " liters";
 
@@ -28,7 +31,7 @@ async function updateData() {
     }
 }
 
-// Spustiť hneď pri načítaní stránky
+//Run onload
 updateData();
 
 setInterval(updateData, 15000);

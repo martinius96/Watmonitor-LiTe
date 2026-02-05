@@ -5,6 +5,8 @@
 * Database handled by Firebase Realtime Database (cloud-based)
 * Possible to visualise the latest sensor data - water level / bulk material height or other
 * **Lite version does not include time-series data or visualisation with graphs**
+* Test interface: https://martinius96.github.io/Watmonitor-LiTe/
+* 
 # Instructions
 * Create FireBase Project: https://console.firebase.google.com/u/0/
 * Gemini / Analytics are not required

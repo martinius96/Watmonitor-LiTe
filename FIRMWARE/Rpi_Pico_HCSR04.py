@@ -1,3 +1,5 @@
+# Test at Wokwi Simulator: https://wokwi.com/projects/460941893358147585
+
 import network
 import time
 import urequests
